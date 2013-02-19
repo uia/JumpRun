@@ -11,7 +11,8 @@ public class MenuAction implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         switch (id) {
             case 0:
-                //Start Game;
+                new Map();
+                menu.setVisible(false);
                 break;
             case 1: 
                 menu.dispose();

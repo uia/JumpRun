@@ -24,8 +24,6 @@ public class Menu extends JFrame {
         exitGame.setBounds(100,220,200,30);
         add(exitGame);
         exitGame.addActionListener(new MenuAction(1, this));
-        
-        setVisible(true);
     }
     
     public void noAction() {
