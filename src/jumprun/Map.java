@@ -27,7 +27,7 @@ public class Map extends JFrame {
         big.setColor(Color.BLACK);
         big.fillRect(-5, 400, 500, 600);
         big.setColor(Color.RED);
-        big.fillOval(100, 300-y, 100, 100);
+        big.fillOval(100-c/2, 300-y+c, 100+c, 100-c);
         g2.drawImage(bi, 0, 0, this);
     }
     
@@ -45,6 +45,11 @@ public class Map extends JFrame {
         return isJumping;
     }
     
-    private int y = 0;
+    public void setCrouch(boolean crouch) {
+        c = crouch ? 50 : 0;
+        this.repaint();
+    }
+    
+    private int y = 0, c = 0;
     private boolean isJumping = false;
 }

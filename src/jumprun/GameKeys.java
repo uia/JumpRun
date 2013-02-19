@@ -9,7 +9,11 @@ public class GameKeys implements KeyListener {
     }
     
     public void keyReleased(KeyEvent e) {
-        
+        switch (e.getKeyCode()) {
+            case 40: //Key Down
+                map.setCrouch(false);
+                break;
+        }
     }
     
     public void keyPressed(KeyEvent e) {
@@ -20,6 +24,10 @@ public class GameKeys implements KeyListener {
                     map.setJumpingState(true);
                     thread.addMovementThread(map);
                 }
+                break;
+                
+            case 40: //Key Down
+                map.setCrouch(true);
                 break;
         }
     }
