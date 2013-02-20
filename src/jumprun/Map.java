@@ -11,6 +11,10 @@ public class Map extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
         this.addKeyListener(new GameKeys(this));
+        mapPainting = new Threading();
+        mapPainting.addMapPaintingThread(this);
+        enemy = new Enemy();
+        enemy.startPositionThread();
         setVisible(true);
     }
     
@@ -28,13 +32,19 @@ public class Map extends JFrame {
         big.fillRect(-5, 400, 500, 600);
         big.setColor(Color.RED);
         big.fillOval(100-c/2, 300-y+c, 100+c, 100-c);
+        big.setColor(Color.BLACK);
+        System.out.println(enemy.getPositionX());
+        
+        if (!enemy.isActive())
+            enemy.startPositionThread();
+        
+        big.fillRect(enemy.getPositionX(), enemy.getPositionY(), 50, 50);
         g2.drawImage(bi, 0, 0, this);
     }
     
     public void setPlayerY(int i) {
         y = i;
         System.out.println(i);
-        this.repaint();
     }
     
     public void setJumpingState(boolean state) {
@@ -46,10 +56,12 @@ public class Map extends JFrame {
     }
     
     public void setCrouch(boolean crouch) {
+        if (crouch) isJumping = true; else isJumping = false;
         c = crouch ? 50 : 0;
-        this.repaint();
     }
     
     private int y = 0, c = 0;
     private boolean isJumping = false;
+    private Enemy enemy;
+    private Threading mapPainting;
 }

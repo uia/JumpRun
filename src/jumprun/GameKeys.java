@@ -22,7 +22,7 @@ public class GameKeys implements KeyListener {
                 Threading thread = new Threading();
                 if (!map.getJumpingState()) {
                     map.setJumpingState(true);
-                    thread.addMovementThread(map);
+                    thread.addPlayerMovementThread(map);
                 }
                 break;
                 
