@@ -31,9 +31,8 @@ public class Map extends JFrame {
         big.setColor(Color.BLACK);
         big.fillRect(-5, 400, 500, 600);
         big.setColor(Color.RED);
-        big.fillOval(100-c/2, 300-y+c, 100+c, 100-c);
+        big.fillOval(x-c/2, 300-y+c, getPlayerWidth(), 100-c);
         big.setColor(Color.BLACK);
-        System.out.println(enemy.getPositionX());
         
         if (!enemy.isActive())
             enemy.startPositionThread();
@@ -42,9 +41,12 @@ public class Map extends JFrame {
         g2.drawImage(bi, 0, 0, this);
     }
     
+    public int getPlayerWidth() {
+        return 100+c;
+    }
+    
     public void setPlayerY(int i) {
         y = i;
-        System.out.println(i);
     }
     
     public void setJumpingState(boolean state) {
@@ -60,8 +62,24 @@ public class Map extends JFrame {
         c = crouch ? 50 : 0;
     }
     
-    private int y = 0, c = 0;
-    private boolean isJumping = false;
+    public boolean isHorMoving() {
+        return horMoving;
+    }
+    
+    public void setHorMoving(boolean hm) {
+        horMoving = hm;
+    }
+    
+    public int getPlayerX() {
+        return x;
+    }
+    
+    public void setPlayerX(int _x) {
+        x = _x;
+    }
+    
+    private int y = 0, c = 0, x = 100;
+    private boolean isJumping = false, horMoving = false;
     private Enemy enemy;
     private Threading mapPainting;
 }

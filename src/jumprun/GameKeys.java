@@ -13,6 +13,10 @@ public class GameKeys implements KeyListener {
             case 40: //Key Down
                 map.setCrouch(false);
                 break;
+            case 39:
+            case 37:
+                map.setHorMoving(false);
+                break;
         }
     }
     
@@ -29,6 +33,18 @@ public class GameKeys implements KeyListener {
             case 40: //Key Down
                 map.setCrouch(true);
                 break;
+                
+            case 39: //Key Right
+                horMovement = new Threading();
+                map.setHorMoving(true);
+                horMovement.addPlayerRightMovementThread(map);
+                break;
+                
+            case 37: //Key Left
+                horMovement = new Threading();
+                map.setHorMoving(true);
+                horMovement.addPlayerLeftMovementThread(map);
+                break;
         }
     }
     
@@ -37,4 +53,5 @@ public class GameKeys implements KeyListener {
     }
     
     private Map map;
+    private Threading horMovement;
 }
